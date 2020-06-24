@@ -34,4 +34,19 @@ function Timer:start(duration)
     warn("Warning: timer could not start again as it is already running.")
   end
 end
+
+function Timer:getTimeLeft()
+   if self._running then
+    local now = tick()
+    local timeLeft = self._startTime + self._duration - now
+    if timeLeft < 0 then
+       timeLeft = 0
+    end
+    return timeLeft
+  else
+    warn("Warning: could not get remaining time, timer is not running.")
+  end
+end
+    
+    
       
